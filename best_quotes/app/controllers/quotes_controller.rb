@@ -27,7 +27,8 @@ class QuotesController < Rulers::Controller
     render :quote, :obj => m
   end
   def update_quote
-    FileModel.save
+    FileModel.save({"submitter"=>"Spock"})
+    quote_1 = FileModel.find(1)
     render :quote, :obj => quote_1
   end
 end
