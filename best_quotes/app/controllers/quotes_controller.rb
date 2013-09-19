@@ -26,4 +26,8 @@ class QuotesController < Rulers::Controller
     m = FileModel.create attrs
     render :quote, :obj => m
   end
+  def update_quote
+    FileModel.save
+    render :quote, :obj => quote_1
+  end
 end
