@@ -11,11 +11,12 @@ class QuotesController < Rulers::Controller
   end
   def quote_1
     quote_1 = FileModel.find(1)
-    render :quote, :obj => quote_1
+    ua = request.user_agent
+    render_response :quote, :obj => quote_1,:ua => ua
   end
   def index
     quotes = FileModel.all
-    render :index, :quotes => quotes
+    render_response :index, :quotes => quotes
   end
   def new_quote
     attrs = {
@@ -24,16 +25,21 @@ class QuotesController < Rulers::Controller
       "attribution" => "Me"
     }
     m = FileModel.create attrs
-    render :quote, :obj => m
+    ua = request.user_agent
+    render :quote, :obj => m,:ua => ua
   end
   def update_quote
     FileModel.save({"submitter"=>"Spock"})
     quote_1 = FileModel.find(1)
-    render :quote, :obj => quote_1
+    ua = request.user_agent
+    render :quote, :obj => quote_1,:ua => ua
   end
   def show
     quote = FileModel.find(params["id"])
     ua = request.user_agent
     render_response :quote, :obj => quote,:ua => ua
+  end
+  def quote_auto_render
+    quote_auto_render = FileModel.find(1) 
   end
 end
