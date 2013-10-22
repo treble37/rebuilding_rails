@@ -1,6 +1,10 @@
 # best_quotes/config.ru
 require './config/application'
 
+map "/" do
+  run QuotesController.action(:index)
+end
+
 class BenchMarker
   def initialize(app, runs = 100)
     @app, @runs = app, runs
